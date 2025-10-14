@@ -26,5 +26,9 @@ def home():
             return send_file(send_file_path, as_attachment=True)
     return render_template('home.html', form=form, readme_generated=False)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 if __name__ == "__main__":
     app.run(debug=True)
