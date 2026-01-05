@@ -53,9 +53,11 @@ def generate_readme(file_list, repo_name):
     )
     return response.choices[0].message.content
 
-def save_readme(content, repo_path):
-    readme_path = os.path.join("generated_files","README.md")
-    with open(readme_path, "w") as f:
+def save_readme(content):
+    output_dir = os.path.join(os.getcwd(), "generated_files")
+    os.makedirs(output_dir, exist_ok=True)
+    readme_path = os.path.join(output_dir, "README.md")
+    with open(readme_path, "w", encoding="utf-8") as f:
         f.write(content)
     logger.info(f"README.md generated at {readme_path}")
     return readme_path
